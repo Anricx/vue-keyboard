@@ -38,34 +38,18 @@ You can use the pipe `|`, open curly brace `{` or close curly brace `}` characte
 Will output a keyboard with the characters `|{}`.
 
 ## Props:
+|Prop|Type|Description|
+|---|---|---|
+|`layouts`|`string`&#124;`string[]`|One or more keyboard layouts, explained above.|
+|`maxlength`|`number`|The maximum input length.|
+|`pattern`|`string`|A regex pattern to apply to the keyboard value. If provided, an invalid match will add the <code>invalid</code> class to the keyboard component. If not provided or if the value matches, the <code>valid</code> class is added.|
 
-<table>
-  <thead>
-    <tr>
-      <th>Prop</th>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>layouts</code></td>
-      <td><code>string|string[]</code></td>
-      <td>One or more keyboard layouts, explained above.</td>
-    </tr>
-    <tr>
-      <td><code>maxlength</code></td>
-      <td><code>number</code></td>
-      <td>The maximum input length.</td>
-    </tr>
-    <tr>
-      <td><code>pattern</code></td>
-      <td><code>string</code></td>
-      <td>A regex pattern to apply to the keyboard value. If provided, an invalid match will add the <code>invalid</code> class to the keyboard component. If not provided or if the value matches, the <code>valid</code> class is added.</td>
-    </tr>
-  </tbody>
-</table>
-
+## Events:
+|Event|Description|
+|---|---|
+|`mounted`|Trigger while this component was mounted.|
+|`keyPressed`|Trigger when key was pressed.|
+|`backspace`|Trigger when `backspace` action key is pressed.|
 
 ## Example:
 

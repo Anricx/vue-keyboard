@@ -6,6 +6,7 @@
         class="vue-keyboard-key"
         role="button"
         :class="btn.type"
+        :disabled="btn.disabled == true"
         :data-args="btn.args"
         :data-text="btn.value"
         :data-action="btn.action.name"
@@ -26,6 +27,10 @@
 
   export default {
     name: 'keyboard',
+
+    mounted(){
+        this.$emit('mounted', this);
+    },
 
     props: {
       value: {
@@ -49,7 +54,8 @@
 
     data() {
       return {
-        layout: 0
+        layout: 0,
+        disabledKeys: []
       };
     },
 
@@ -110,6 +116,7 @@
 
               buttons.push({
                 type: 'action',
+                disabled: false,
                 action: { name: action.replace(/\s+/g, '-').toLowerCase(), callable: method },
                 value: text,
                 args
@@ -126,6 +133,7 @@
 
                 buttons.push({
                   type: 'char',
+                  disabled: this.disabledKeys.includes(char),
                   action: { name: null, callable: this.append.bind(this, char) },
                   value: char,
                   args: null
@@ -167,12 +175,14 @@
        */
       append(char) {
         this.mutate(this.value + char);
+        this.$emit('keyPressed', char);
       },
 
       /**
        * Remove the last character from the current keyboard value.
        */
       backspace() {
+          this.$emit('backspace');
         this.mutate(this.value.slice(0, this.value.length - 1));
       },
 
